@@ -1,7 +1,7 @@
 import React from "react";
 
-const NexPlace = () => {
-  return <div>NexPlace</div>;
+const NewPlace = () => {
+  return <div>NewPlace</div>;
 };
 
-export default NexPlace;
+export default NewPlace;
