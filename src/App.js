@@ -2,12 +2,14 @@ import React from "react";
 import {
   BrowserRouter as Router,
   Route,
-  Switch,
   Redirect,
+  Switch,
 } from "react-router-dom";
+
+import UserPlaces from "./places/pages/UserPlaces";
 import Users from "./user/pages/Users";
 import NewPlace from "./places/pages/NewPlace";
-import MainNavigation from "./places/shared/components/Navigation/MainNavigation";
+import MainNavigation from "./shared/components/Navigation/MainNavigation";
 
 const App = () => {
   return (
@@ -18,10 +20,13 @@ const App = () => {
           <Route path="/" exact>
             <Users />
           </Route>
-          <Route path="/places/new" exact>
+          <Route path="/:uid/places">
+            <UserPlaces />
+          </Route>
+          <Route path="/places/new">
             <NewPlace />
           </Route>
-          <Redirect to="/"></Redirect>
+          <Redirect to="/" />
         </Switch>
       </main>
     </Router>
