@@ -1,41 +1,40 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-import PlaceList from "../components/PlaceList";
+import React from 'react';
+import { useParams } from 'react-router-dom';
 
-const places = [
+import PlaceList from '../components/PlaceList';
+
+const DUMMY_PLACES = [
   {
-    id: "p1",
-    title: "« place de la mosquée des trépassés »",
-    description:
-      "est une célèbre place publique au sud-ouest de la médina de Marrakech au Maroc. Ce haut-lieu traditionnel, populaire et animé notamment la nuit attire plus d'un million de visiteurs chaque année. Jemaa el-Fna incarne la diversité de l’identité marocaine en raison de la présence de représentants des différentes cultures qui constituent le Maroc : Arabes, Berbères, Gnaouas1. ",
+    id: 'p1',
+    title: 'Empire State Building',
+    description: 'One of the most famous sky scrapers in the world!',
     imageUrl:
-      "https://www.visitmorocco.com/sites/default/files/styles/thumbnail_destination_background_top5/public/thumbnails/image/koutoubia-mosque-minaret-located-at-medina-quarter-of-marrakesh-morocco-balate-dorin.jpg?itok=08hAHERp",
-    address: "10 Derb Semmarine, Marrakech 40000",
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/NYC_Empire_State_Building.jpg/640px-NYC_Empire_State_Building.jpg',
+    address: '20 W 34th St, New York, NY 10001',
     location: {
-      lat: 31.625521,
-      lng: -7.9871825,
+      lat: 40.7484405,
+      lng: -73.9878584
     },
-    creator: "u1",
+    creator: 'u1'
   },
   {
-    id: "p3",
-    title: "« place de la mosquée des trépassés »",
-    description:
-      "est une célèbre place publique au sud-ouest de la médina de Marrakech au Maroc. Ce haut-lieu traditionnel, populaire et animé notamment la nuit attire plus d'un million de visiteurs chaque année. Jemaa el-Fna incarne la diversité de l’identité marocaine en raison de la présence de représentants des différentes cultures qui constituent le Maroc : Arabes, Berbères, Gnaouas1. ",
+    id: 'p2',
+    title: 'Empire State Building',
+    description: 'One of the most famous sky scrapers in the world!',
     imageUrl:
-      "http://www.marrakech-private-resort.com/wp-content/uploads/2019/10/place-jeema-el-fna-nuit.png",
-    address: "10 Derb Semmarine, Marrakech 40000",
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/NYC_Empire_State_Building.jpg/640px-NYC_Empire_State_Building.jpg',
+    address: '20 W 34th St, New York, NY 10001',
     location: {
-      lat: 31.625521,
-      lng: -7.9871825,
+      lat: 40.7484405,
+      lng: -73.9878584
     },
-    creator: "u2",
-  },
+    creator: 'u2'
+  }
 ];
 
-const UserPlaces = (props) => {
-  const uid = useParams().uid;
-  const loadedPlaces = places.filter((place) => place.creator === uid);
+const UserPlaces = () => {
+  const userId = useParams().userId;
+  const loadedPlaces = DUMMY_PLACES.filter(place => place.creator === userId);
   return <PlaceList items={loadedPlaces} />;
 };
 

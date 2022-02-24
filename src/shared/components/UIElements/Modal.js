@@ -1,11 +1,11 @@
-import React from "react";
-import reactDom from "react-dom";
-import { CSSTransition } from "react-transition-group";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { CSSTransition } from 'react-transition-group';
 
-import Backdrop from "./Backdrop";
-import "./Modal.css";
+import Backdrop from './Backdrop';
+import './Modal.css';
 
-const ModalOverLay = (props) => {
+const ModalOverlay = props => {
   const content = (
     <div className={`modal ${props.className}`} style={props.style}>
       <header className={`modal__header ${props.headerClass}`}>
@@ -13,7 +13,7 @@ const ModalOverLay = (props) => {
       </header>
       <form
         onSubmit={
-          props.onSubmit ? props.onSubmit : (event) => event.preventDefault()
+          props.onSubmit ? props.onSubmit : event => event.preventDefault()
         }
       >
         <div className={`modal__content ${props.contentClass}`}>
@@ -25,9 +25,10 @@ const ModalOverLay = (props) => {
       </form>
     </div>
   );
-  return reactDom.createPortal(content, document.getElementById("modal-hook"));
+  return ReactDOM.createPortal(content, document.getElementById('modal-hook'));
 };
-const Modal = (props) => {
+
+const Modal = props => {
   return (
     <React.Fragment>
       {props.show && <Backdrop onClick={props.onCancel} />}
@@ -38,7 +39,7 @@ const Modal = (props) => {
         timeout={200}
         classNames="modal"
       >
-        <ModalOverLay {...props} />
+        <ModalOverlay {...props} />
       </CSSTransition>
     </React.Fragment>
   );

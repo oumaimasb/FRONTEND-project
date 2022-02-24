@@ -1,23 +1,16 @@
-import React from "react";
+import React from 'react';
 
-import UsersList from "../components/UsersList";
+import UsersList from '../components/UsersList';
 
 const Users = () => {
   const USERS = [
     {
-      id: "u1",
-      name: "Lamiaa Mn",
+      id: 'u1',
+      name: 'Max Schwarz',
       image:
-        "https://c8.alamy.com/zoomsfr/9/065fccaef457421b90c19d57e4b452d8/jam84d.jpg",
-      places: 3,
-    },
-    {
-      id: "u2",
-      name: "Oumaima Sb",
-      image:
-        "https://c8.alamy.com/compfr/2cdgc22/avatar-de-femme-musulmane-isole-sur-blanc-jeune-fille-arabe-portant-le-hijab-et-des-lunettes-de-soleil-dessin-anime-portrait-de-femme-illustration-vectorielle-plate-2cdgc22.jpg",
-      places: 2,
-    },
+        'https://images.pexels.com/photos/839011/pexels-photo-839011.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+      places: 3
+    }
   ];
 
   return <UsersList items={USERS} />;
