@@ -1,26 +1,49 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import UsersList from "../components/UsersList";
+import ErrorModal from "../../shared/components/UIElements/ErrorModal";
+import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 
 const Users = () => {
-  const USERS = [
-    {
-      id: "u1",
-      name: "Oumaima sb",
-      image:
-        "https://us.123rf.com/450wm/nikolaydzhi/nikolaydzhi1609/nikolaydzhi160900310/64778716-beau-visage-de-femme-arabe-musulman-hijab-illustration-vectorielle.jpg?ver=6",
-      places: 3,
-    },
-    {
-      id: "u2",
-      name: "Fatima sb",
-      image:
-        "https://us.123rf.com/450wm/nikolaydzhi/nikolaydzhi1609/nikolaydzhi160900310/64778716-beau-visage-de-femme-arabe-musulman-hijab-illustration-vectorielle.jpg?ver=6",
-      places: 1,
-    },
-  ];
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState();
+  const [loadedUsers, setLoadedUsers] = useState();
 
-  return <UsersList items={USERS} />;
+  useEffect(() => {
+    const sendRequest = async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch("http://localhost:5000/api/users");
+
+        const responseData = await response.json();
+        if (!response.ok) {
+          throw new Error(responseData.message);
+        }
+        setLoadedUsers(responseData.users);
+        setIsLoading(false);
+      } catch (err) {
+        setIsLoading(false);
+        setError(err.message);
+      }
+    };
+    sendRequest();
+  }, []);
+
+  const errorHandler = () => {
+    setError(null);
+  };
+
+  return (
+    <React.Fragment>
+      <ErrorModal error={error} onClear={errorHandler} />
+      {isLoading && (
+        <div className="center">
+          <LoadingSpinner asOverlay />
+        </div>
+      )}
+      {!isLoading && loadedUsers && <UsersList items={loadedUsers} />}
+    </React.Fragment>
+  );
 };
 
 export default Users;
